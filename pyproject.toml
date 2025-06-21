@@ -4,7 +4,7 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "unidb"
+name = "asroDB"
 version = "0.1.0"
 description = "Unified Python database client for SQLite, PostgreSQL, MongoDB, and Redis."
 authors = [
