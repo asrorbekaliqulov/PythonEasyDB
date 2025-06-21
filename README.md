@@ -1,6 +1,6 @@
-# 🗉 UniDB
+# 🗉 asroDB
 
-**UniDB** — bu Python kutubxonasi bo‘lib, u bir nechta turdagi ma'lumotlar bazalariga yagona interfeys orqali ulanish imkonini beradi:  
+**asroDB** — bu Python kutubxonasi bo‘lib, u bir nechta turdagi ma'lumotlar bazalariga yagona interfeys orqali ulanish imkonini beradi:  
 ✅ **SQLite**  
 ✅ **PostgreSQL**  
 ✅ **MongoDB**  
@@ -13,13 +13,13 @@ Ushbu kutubxona SQL yozmasdan, yuqori darajadagi (high-level) API orqali qulay i
 ## 🚀 O‘rnatish
 
 ```bash
-pip install unidb
+pip install asroDB
 ```
 
 Yoki manba koddan:
 
 ```bash
-git clone https://github.com/asrorbekaliqulov/unidb.git
+git clone https://github.com/asrorbekaliqulov/asroDB.git
 cd unidb
 pip install .
 ```
@@ -40,10 +40,10 @@ pip install .
 ## ⚡️ Quick Start
 
 ```python
-from unidb import UniDB
+from asroDB import AsroDB
 
 # SQLite bilan ulanish
-db = UniDB("sqlite:///mydb.sqlite3")
+db = AsroDB("sqlite:///mydb.sqlite3")
 
 # Jadval yaratish
 db.create_table(
@@ -55,10 +55,10 @@ db.create_table(
 )
 
 # Ma'lumot qo‘shish
-db.insert("users", {"name": "Asror", "age": 17})
+db.insert("users", {"name": "Asrorbek", "age": 20})
 
 # Ma'lumot olish
-users = db.select("users", where={"age__gte": 16}, order_by="name", desc=True)
+users = db.select("users", where={"age__gte": 22}, order_by="name", desc=True)
 print(users)
 ```
 
@@ -187,8 +187,8 @@ Bazani yopish uchun.
 ## 🛠 Hissa qo‘shish (Contributing)
 
 ```bash
-git clone https://github.com/asrorbekaliqulov/unidb.git
-cd unidb
+git clone https://github.com/asrorbekaliqulov/asroDB.git
+cd asroDB
 python3 -m venv venv
 source venv/bin/activate
 pip install -e .[dev]
