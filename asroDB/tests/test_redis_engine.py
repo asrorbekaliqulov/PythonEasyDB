@@ -1,7 +1,7 @@
 # tests/test_redis_engine.py
 
 import pytest
-from unidb.engines.redis_engine import RedisEngine
+from asroDB.engines.redis_engine import RedisEngine
 
 REDIS_URI = "redis://localhost:6379/1"
 

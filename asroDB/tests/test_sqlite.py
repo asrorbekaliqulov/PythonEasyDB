@@ -1,20 +1,22 @@
-# tests/test_postgres_engine.py
+# tests/test_sqlite_engine.py
 
 import os
 import pytest
-from unidb.engines.postgres_engine import PostgresEngine
+from asroDB.engines.sqlite_engine import SQLiteEngine
 
-PG_URI = os.getenv("POSTGRES_URI", "postgresql://postgres:postgres@localhost:5432/unidb_test")
+TEST_DB = "test_unidb.sqlite"
 
 def setup_module(module):
-    db = PostgresEngine(PG_URI)
-    db.cursor.execute("DROP TABLE IF EXISTS users")
-    db.conn.commit()
-    db.close()
+    if os.path.exists(TEST_DB):
+        os.remove(TEST_DB)
 
-def test_postgres_crud_operations():
-    db = PostgresEngine(PG_URI)
-    
+def teardown_module(module):
+    if os.path.exists(TEST_DB):
+        os.remove(TEST_DB)
+
+def test_sqlite_crud_operations():
+    db = SQLiteEngine(TEST_DB)
+
     db.create_table(
         "users",
         id={"type": "int", "primary_key": True, "auto_increment": True},
@@ -24,9 +26,9 @@ def test_postgres_crud_operations():
         is_admin={"type": "bool", "default": False},
     )
 
-    db.insert("users", {"id": 1, "name": "Ali", "age": 17})
-    db.insert("users", {"id": 2, "name": "Vali", "age": 21, "is_admin": True})
-    db.insert("users", {"id": 3, "name": "Dali", "age": 18, "status": "inactive"})
+    db.insert("users", {"name": "Ali", "age": 17})
+    db.insert("users", {"name": "Vali", "age": 21, "is_admin": True})
+    db.insert("users", {"name": "Dali", "age": 18, "status": "inactive"})
 
     results = db.select("users")
     assert len(results) == 3
@@ -37,10 +39,10 @@ def test_postgres_crud_operations():
     db.update("users", where={"age__lt": 18}, values={"status": "minor"})
     minors = db.select("users", where={"status": "minor"})
     assert len(minors) == 1
-    # assert minors[0][1] == "Ali"
+    assert minors[0][1] == "Ali"
 
     db.delete("users", where={"age__gt": 20})
     remaining = db.select("users")
     assert len(remaining) == 2
-
+    print("Remaining users:", remaining)
     db.close()

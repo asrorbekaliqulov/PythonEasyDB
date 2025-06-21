@@ -1,7 +1,7 @@
 # unidb/engines/mongo_engine.py
 
 from pymongo import MongoClient
-from unidb.utils import DBError
+from asroDB.utils import DBError
 # from unidb.utils import parse_where  # Reuse if adapted for Mongo
 
 class MongoEngine:

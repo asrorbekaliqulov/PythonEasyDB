@@ -1,16 +1,15 @@
-# unidb/engines/postgres_engine.py
+# unidb/engines/sqlite_engine.py
 
-import psycopg2
-from psycopg2.extras import RealDictCursor
-from unidb.utils import DBError, build_select_query
+import sqlite3
+from asroDB.utils import DBError, build_select_query
 
-class PostgresEngine:
-    def __init__(self, dsn):
+class SQLiteEngine:
+    def __init__(self, db_path):
         try:
-            self.conn = psycopg2.connect(dsn)
-            self.cursor = self.conn.cursor(cursor_factory=RealDictCursor)
+            self.conn = sqlite3.connect(db_path)
+            self.cursor = self.conn.cursor()
         except Exception as e:
-            raise DBError(f"Could not connect to PostgreSQL: {e}")
+            raise DBError(f"Could not connect to SQLite database: {e}")
 
     def create_table(self, table_name, **columns):
         try:
@@ -23,14 +22,11 @@ class PostgresEngine:
                     column_defs.append(f"{col_name} {col_type}")
                     continue
 
-                col_type = self.map_type(props.get("type", "str"))
+                col_type = self.map_type(props.get("type", "str"), auto_increment=props.get("auto_increment", False))
                 definition = [col_name, col_type]
 
                 if props.get("primary_key"):
                     definition.append("PRIMARY KEY")
-
-                if props.get("auto_increment") and col_type.upper() == "SERIAL":
-                    pass  # SERIAL already auto-increments
 
                 if props.get("unique"):
                     definition.append("UNIQUE")
@@ -63,8 +59,8 @@ class PostgresEngine:
     def insert(self, table_name, data):
         try:
             keys = ", ".join(data.keys())
-            placeholders = ", ".join("%s" for _ in data)
-            values = tuple(data.values())
+            placeholders = ", ".join("?" for _ in data)
+            values = tuple(self.to_sql_value(v) for v in data.values())
             sql = f"INSERT INTO {table_name} ({keys}) VALUES ({placeholders})"
             self.cursor.execute(sql, values)
             self.conn.commit()
@@ -83,7 +79,8 @@ class PostgresEngine:
                 group_by=group_by,
                 having=having,
                 distinct=distinct,
-                placeholder="%s"
+                joins=joins,
+                placeholder="?"
             )
             self.cursor.execute(sql, values)
             return self.cursor.fetchall()
@@ -92,11 +89,11 @@ class PostgresEngine:
 
     def update(self, table_name, where, values):
         try:
-            set_clause = ", ".join(f"{k}=%s" for k in values)
-            set_values = tuple(values.values())
+            set_clause = ", ".join(f"{k}=?" for k in values)
+            set_values = tuple(self.to_sql_value(v) for v in values.values())
 
             from unidb.utils import parse_where
-            where_clause, where_values = parse_where(where, placeholder="%s")
+            where_clause, where_values = parse_where(where, placeholder="?")
             sql = f"UPDATE {table_name} SET {set_clause} WHERE {where_clause}"
 
             self.cursor.execute(sql, set_values + where_values)
@@ -107,7 +104,7 @@ class PostgresEngine:
     def delete(self, table_name, where):
         try:
             from unidb.utils import parse_where
-            where_clause, where_values = parse_where(where, placeholder="%s")
+            where_clause, where_values = parse_where(where, placeholder="?")
             sql = f"DELETE FROM {table_name} WHERE {where_clause}"
             self.cursor.execute(sql, where_values)
             self.conn.commit()
@@ -117,16 +114,21 @@ class PostgresEngine:
     def map_type(self, t: str, auto_increment=False):
         t = t.lower()
         if auto_increment and t == "int":
-            return "SERIAL"
+            return "INTEGER PRIMARY KEY AUTOINCREMENT"
         return {
-            "str": "VARCHAR",
+            "str": "TEXT",
             "int": "INTEGER",
             "float": "REAL",
-            "bool": "BOOLEAN"
-        }.get(t, "VARCHAR")
+            "bool": "INTEGER"
+        }.get(t, "TEXT")
+
+    def to_sql_value(self, value):
+        if isinstance(value, bool):
+            return int(value)
+        return value
 
     def close(self):
         try:
             self.conn.close()
         except Exception as e:
-            raise DBError(f"Failed to close PostgreSQL connection: {e}")
+            raise DBError(f"Failed to close SQLite connection: {e}")

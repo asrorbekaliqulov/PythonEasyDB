@@ -1,9 +1,9 @@
 import json
-from unidb.engines.sqlite_engine import SQLiteEngine
-from unidb.engines.postgres_engine import PostgresEngine
-from unidb.engines.redis_engine import RedisEngine
-from unidb.engines.mongo_engine import MongoEngine  # Placeholder for future MongoDB support
-from unidb.utils import DBError
+from asroDB.engines.sqlite_engine import SQLiteEngine
+from asroDB.engines.postgres_engine import PostgresEngine
+from asroDB.engines.redis_engine import RedisEngine
+from asroDB.engines.mongo_engine import MongoEngine  # Placeholder for future MongoDB support
+from asroDB.utils import DBError
 import re
 
 VALID_TYPES = {"str", "int", "float", "bool", "date", "datetime", "json"}
@@ -13,7 +13,7 @@ def is_valid_identifier(name: str) -> bool:
     return bool(re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", name))
 
 
-class UniDB:
+class asroDB:
     """
     Unified Database Interface for multiple database engines.
     Supports SQLite, PostgreSQL, MongoDB, and Redis.

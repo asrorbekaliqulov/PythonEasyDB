@@ -1,7 +1,7 @@
 # tests/test_mongo_engine.py
 
 import pytest
-from unidb.engines.mongo_engine import MongoEngine
+from asroDB.engines.mongo_engine import MongoEngine
 
 MONGO_URI = "mongodb://asrorbekaliqulov08:<db_password>@cluster0.tfjy0.mongodb.net/unidb_test?retryWrites=true&w=majority&authSource=admin&cluster=atlas"
 
