@@ -20,9 +20,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/asrorbekaliqulov/unidb"
-Repository = "https://github.com/asrorbekaliqulov/unidb"
-Issues = "https://github.com/asrorbekaliqulov/unidb/issues"
+Homepage = "https://github.com/asrorbekaliqulov/asroDB"
+Repository = "https://github.com/asrorbekaliqulov/asroDB"
+Issues = "https://github.com/asrorbekaliqulov/asroDB/issues"
 
 [tool.setuptools.packages.find]
 where = ["unidb"]
