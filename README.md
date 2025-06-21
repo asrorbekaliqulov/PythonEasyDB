@@ -40,7 +40,7 @@ pip install .
 ## ⚡️ Quick Start
 
 ```python
-from PythonEasyDB import easydb
+from PythonEasyDB import easyDB
 
 # SQLite bilan ulanish
 db = easydb("sqlite:///mydb.sqlite3")

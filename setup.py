@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="PythonEasyDB",
-    version="0.1.0",
+    version="0.1.2",
     author="Asrorbek Aliqulov",
     author_email="asrorbekaliqulov08@gmail.com",
     description="Unified interface to access SQLite, PostgreSQL, Redis, and MongoDB with high-level Python API",

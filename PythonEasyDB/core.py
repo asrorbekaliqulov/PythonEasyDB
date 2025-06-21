@@ -13,7 +13,7 @@ def is_valid_identifier(name: str) -> bool:
     return bool(re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", name))
 
 
-class asroDB:
+class easyDB:
     """
     Unified Database Interface for multiple database engines.
     Supports SQLite, PostgreSQL, MongoDB, and Redis.

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PythonEasyDB"
-version = "0.1.0"
+version = "0.1.2"
 description = "Unified Python database client for SQLite, PostgreSQL, MongoDB, and Redis."
 authors = [
     { name="Asrorbek Aliqulov", email="asrorbekaliqulov08@gmail.com" }
