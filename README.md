@@ -208,7 +208,7 @@ Ushbu loyiha [MIT](LICENSE) litsenziyasi ostida.
 ## 📬 Muallif
 
 **Asrorbek Aliqulov**  
-📧 Email: asrorbekaliqulov08@example.com  
+📧 Email: asrorbekaliqulov08@gmail.com  
 🌐 Sayt: [https://asrorbekaliqulov.uz](asrorbekaliqulov.uz)
 
 ---
