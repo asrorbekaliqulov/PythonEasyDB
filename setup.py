@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="unidb",
+    name="asroDB",
     version="0.1.0",
     author="Asrorbek Aliqulov",
-    author_email="your_email@example.com",
+    author_email="asrorbekaliqulov08@gmail.com",
     description="Unified interface to access SQLite, PostgreSQL, Redis, and MongoDB with high-level Python API",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/asrorbekaliqulov/unidb",  # agar yo'q bo‘lsa, comment qilib qo‘ying
+    url="https://github.com/asrorbekaliqulov/asroDB",
     packages=find_packages(),
     install_requires=[
         "pymongo>=4.0.0",
