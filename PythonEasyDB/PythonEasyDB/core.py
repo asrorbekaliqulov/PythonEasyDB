@@ -1,9 +1,9 @@
 import json
-from asroDB.engines.sqlite_engine import SQLiteEngine
-from asroDB.engines.postgres_engine import PostgresEngine
-from asroDB.engines.redis_engine import RedisEngine
-from asroDB.engines.mongo_engine import MongoEngine  # Placeholder for future MongoDB support
-from asroDB.utils import DBError
+from PythonEasyDB.engines.sqlite_engine import SQLiteEngine
+from PythonEasyDB.engines.postgres_engine import PostgresEngine
+from PythonEasyDB.engines.redis_engine import RedisEngine
+from PythonEasyDB.engines.mongo_engine import MongoEngine  # Placeholder for future MongoDB support
+from PythonEasyDB.utils import DBError
 import re
 
 VALID_TYPES = {"str", "int", "float", "bool", "date", "datetime", "json"}

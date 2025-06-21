@@ -1,7 +1,7 @@
 # unidb/engines/sqlite_engine.py
 
 import sqlite3
-from asroDB.utils import DBError, build_select_query
+from PythonEasyDB.utils import DBError, build_select_query
 
 class SQLiteEngine:
     def __init__(self, db_path):

@@ -2,7 +2,7 @@
 
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from asroDB.utils import DBError, build_select_query
+from PythonEasyDB.utils import DBError, build_select_query
 
 class PostgresEngine:
     def __init__(self, dsn):

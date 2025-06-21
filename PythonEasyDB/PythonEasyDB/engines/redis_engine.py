@@ -2,7 +2,7 @@
 
 import redis
 import json
-from asroDB.utils import DBError
+from PythonEasyDB.utils import DBError
 from urllib.parse import urlparse
 
 class RedisEngine:

@@ -4,8 +4,8 @@ requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "asroDB"
-version = "0.1.1"
+name = "PythonEasyDB"
+version = "0.1.0"
 description = "Unified Python database client for SQLite, PostgreSQL, MongoDB, and Redis."
 authors = [
     { name="Asrorbek Aliqulov", email="asrorbekaliqulov08@gmail.com" }
@@ -20,12 +20,12 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/asrorbekaliqulov/asroDB"
-Repository = "https://github.com/asrorbekaliqulov/asroDB"
-Issues = "https://github.com/asrorbekaliqulov/asroDB/issues"
+Homepage = "https://github.com/asrorbekaliqulov/PythonEasyDB"
+Repository = "https://github.com/asrorbekaliqulov/PythonEasyDB"
+Issues = "https://github.com/asrorbekaliqulov/PythonEasyDB/issues"
 
 [tool.setuptools.packages.find]
-where = ["unidb"]
+where = ["PythonEasyDB"]
 
 # Optional: if you want to include non-code files like README
 [tool.setuptools]

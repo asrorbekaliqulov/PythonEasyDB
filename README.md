@@ -1,6 +1,6 @@
-# 🗉 asroDB
+# 🗉 PythonEasyDB
 
-**asroDB** — bu Python kutubxonasi bo‘lib, u bir nechta turdagi ma'lumotlar bazalariga yagona interfeys orqali ulanish imkonini beradi:  
+**PythonEasyDB** — bu Python kutubxonasi bo‘lib, u bir nechta turdagi ma'lumotlar bazalariga yagona interfeys orqali ulanish imkonini beradi:  
 ✅ **SQLite**  
 ✅ **PostgreSQL**  
 ✅ **MongoDB**  
@@ -13,13 +13,13 @@ Ushbu kutubxona SQL yozmasdan, yuqori darajadagi (high-level) API orqali qulay i
 ## 🚀 O‘rnatish
 
 ```bash
-pip install asroDB
+pip install PythonEasyDB
 ```
 
 Yoki manba koddan:
 
 ```bash
-git clone https://github.com/asrorbekaliqulov/asroDB.git
+git clone https://github.com/asrorbekaliqulov/PythonEasyDB.git
 cd unidb
 pip install .
 ```
@@ -40,10 +40,10 @@ pip install .
 ## ⚡️ Quick Start
 
 ```python
-from asroDB import AsroDB
+from PythonEasyDB import easydb
 
 # SQLite bilan ulanish
-db = AsroDB("sqlite:///mydb.sqlite3")
+db = easydb("sqlite:///mydb.sqlite3")
 
 # Jadval yaratish
 db.create_table(
@@ -187,8 +187,8 @@ Bazani yopish uchun.
 ## 🛠 Hissa qo‘shish (Contributing)
 
 ```bash
-git clone https://github.com/asrorbekaliqulov/asroDB.git
-cd asroDB
+git clone https://github.com/asrorbekaliqulov/PythonEasyDB.git
+cd PythonEasyDB
 python3 -m venv venv
 source venv/bin/activate
 pip install -e .[dev]
